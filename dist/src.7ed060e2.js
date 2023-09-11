@@ -25815,15 +25815,11 @@ function reloadCSS() {
   }, 50);
 }
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../.nvm/versions/node/v10.13.0/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../src/components/ExpenseEntryItem.css":[function(require,module,exports) {
+},{"./bundle-url":"../../../../../.nvm/versions/node/v10.13.0/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../src/components/ExpenseEntryItemList.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../.nvm/versions/node/v10.13.0/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../src/components/ExpenseEntryItem.module.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../.nvm/versions/node/v10.13.0/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../src/components/ExpenseEntryItem.js":[function(require,module,exports) {
+},{"_css_loader":"../../../../../.nvm/versions/node/v10.13.0/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../src/components/ExpenseEntryItemList.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25831,8 +25827,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
-require("./ExpenseEntryItem.css");
-var _ExpenseEntryItemModule = _interopRequireDefault(require("./ExpenseEntryItem.module.css"));
+require("./ExpenseEntryItemList.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25847,41 +25842,125 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-var ExpenseEntryItem = /*#__PURE__*/function (_React$Component) {
-  _inherits(ExpenseEntryItem, _React$Component);
-  var _super = _createSuper(ExpenseEntryItem);
-  function ExpenseEntryItem(props) {
-    _classCallCheck(this, ExpenseEntryItem);
-    return _super.call(this, props);
+var ExpenseEntryItemList = /*#__PURE__*/function (_React$Component) {
+  _inherits(ExpenseEntryItemList, _React$Component);
+  var _super = _createSuper(ExpenseEntryItemList);
+  function ExpenseEntryItemList(props) {
+    var _this;
+    _classCallCheck(this, ExpenseEntryItemList);
+    _this = _super.call(this, props);
+    _this.handleMouseEnter = _this.handleMouseEnter.bind();
+    _this.handleMouseLeave = _this.handleMouseLeave.bind();
+    _this.handleMouseOver = _this.handleMouseOver.bind();
+    return _this;
   }
-  _createClass(ExpenseEntryItem, [{
+  _createClass(ExpenseEntryItemList, [{
+    key: "handleMouseEnter",
+    value: function handleMouseEnter(e) {
+      e.target.parentNode.classList.add("highlight");
+    }
+  }, {
+    key: "handleMouseLeave",
+    value: function handleMouseLeave(e) {
+      e.target.parentNode.classList.remove("highlight");
+    }
+  }, {
+    key: "handleMouseOver",
+    value: function handleMouseOver(e) {
+      console.log("The mouse is at (" + e.clientX + ", " + e.clientY + ")");
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("b", null, "Item:"), " ", /*#__PURE__*/_react.default.createElement("em", null, this.props.name)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("b", null, "Amount:"), " ", /*#__PURE__*/_react.default.createElement("em", null, this.props.amount)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("b", null, "Spend Date:"), /*#__PURE__*/_react.default.createElement("em", null, this.props.spendDate.toString())), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("b", null, "Category:"), " ", /*#__PURE__*/_react.default.createElement("em", null, this.props.category)));
+      var _this2 = this;
+      var lists = this.props.items.map(function (item) {
+        return /*#__PURE__*/_react.default.createElement("tr", {
+          key: item.id,
+          onMouseEnter: _this2.handleMouseEnter,
+          onMouseLeave: _this2.handleMouseLeave
+        }, /*#__PURE__*/_react.default.createElement("td", null, item.name), /*#__PURE__*/_react.default.createElement("td", null, item.amount), /*#__PURE__*/_react.default.createElement("td", null, new Date(item.spendDate).toDateString()), /*#__PURE__*/_react.default.createElement("td", null, item.category));
+      });
+      return /*#__PURE__*/_react.default.createElement("table", {
+        onMouseOver: this.handleMouseOver
+      }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("th", null, "Item"), /*#__PURE__*/_react.default.createElement("th", null, "Amount"), /*#__PURE__*/_react.default.createElement("th", null, "Date"), /*#__PURE__*/_react.default.createElement("th", null, "Category"))), /*#__PURE__*/_react.default.createElement("tbody", null, lists));
     }
   }]);
-  return ExpenseEntryItem;
+  return ExpenseEntryItemList;
 }(_react.default.Component);
-var _default = ExpenseEntryItem;
+var _default = ExpenseEntryItemList;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./ExpenseEntryItem.css":"../src/components/ExpenseEntryItem.css","./ExpenseEntryItem.module.css":"../src/components/ExpenseEntryItem.module.css"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./ExpenseEntryItemList.css":"../src/components/ExpenseEntryItemList.css"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 var _reactDom = _interopRequireDefault(require("react-dom"));
-var _ExpenseEntryItem = _interopRequireDefault(require("./components/ExpenseEntryItem"));
+var _ExpenseEntryItemList = _interopRequireDefault(require("./components/ExpenseEntryItemList"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-var name = "Grape Juice";
-var amount = 30.00;
-var spendDate = new Date("2020-10-10");
-var category = "Food";
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_ExpenseEntryItem.default, {
-  name: name,
-  amount: amount,
-  spendDate: spendDate,
-  category: category
+var items = [{
+  id: 1,
+  name: "Pizza",
+  amount: 80,
+  spendDate: "2020-10-10",
+  category: "Food"
+}, {
+  id: 2,
+  name: "Grape Juice",
+  amount: 30,
+  spendDate: "2020-10-12",
+  category: "Food"
+}, {
+  id: 3,
+  name: "Cinema",
+  amount: 210,
+  spendDate: "2020-10-16",
+  category: "Entertainment"
+}, {
+  id: 4,
+  name: "Java Programming book",
+  amount: 242,
+  spendDate: "2020-10-15",
+  category: "Academic"
+}, {
+  id: 5,
+  name: "Mango Juice",
+  amount: 35,
+  spendDate: "2020-10-16",
+  category: "Food"
+}, {
+  id: 6,
+  name: "Dress",
+  amount: 2000,
+  spendDate: "2020-10-25",
+  category: "Cloth"
+}, {
+  id: 7,
+  name: "Tour",
+  amount: 2555,
+  spendDate: "2020-10-29",
+  category: "Entertainment"
+}, {
+  id: 8,
+  name: "Meals",
+  amount: 300,
+  spendDate: "2020-10-30",
+  category: "Food"
+}, {
+  id: 9,
+  name: "Mobile",
+  amount: 3500,
+  spendDate: "2020-11-02",
+  category: "Gadgets"
+}, {
+  id: 10,
+  name: "Exam Fees",
+  amount: 1245,
+  spendDate: "2020-11-04",
+  category: "Academic"
+}];
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_ExpenseEntryItemList.default, {
+  items: items
 })), document.getElementById('root'));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/ExpenseEntryItem":"../src/components/ExpenseEntryItem.js"}],"../../../../../.nvm/versions/node/v10.13.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/ExpenseEntryItemList":"../src/components/ExpenseEntryItemList.js"}],"../../../../../.nvm/versions/node/v10.13.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

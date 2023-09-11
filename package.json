@@ -2,11 +2,11 @@
   "name": "expense-manager-parcel",
   "version": "1.0.0",
   "description": "",
- "main": "src/index.js",
-"scripts": {
-  "start": "parcel public/index.html",
-  "build": "parcel build public/index.html --out-dir dist"
-},
+  "main": "src/index.js",
+  "scripts": {
+    "start": "parcel public/index.html",
+    "build": "parcel build public/index.html --out-dir dist"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
